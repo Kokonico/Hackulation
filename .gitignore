@@ -1,4 +1,4 @@
-.idea
+.idea/
 
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
@@ -16,9 +16,6 @@
 # CMake
 cmake-build-*/
 
-# Mongo Explorer plugin
-.idea/**/mongoSettings.xml
-
 # File-based project format
 *.iws
 
@@ -30,12 +27,6 @@ out/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
-
-# Cursive Clojure plugin
-.idea/replstate.xml
-
-# SonarLint plugin
-.idea/sonarlint/
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
