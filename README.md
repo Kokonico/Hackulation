@@ -24,3 +24,4 @@ You can still run an experimental world by running the `test_world.py` file.
 
 ## How to contribute
 You can contribute by forking this repository and making a pull request with your changes!
+(for some things to fix, check [TODO.md](TODO.md))
