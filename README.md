@@ -1,6 +1,8 @@
 # Hackulation
 > A hacked-together simulation!
 
+<img src="readme-assets/water.png" alt="A screenshot of the simulation with water pouring down" width="400"/>
+
 ## What is this?
  This is a powder-toy-esque simulation that I made in Python, it's constantly being worked on, mostly by me in my spare time :P
 
