@@ -4,7 +4,7 @@
 ## What is this?
  This is a powder-toy-esque simulation that I made in Python, it's constantly being worked on, mostly by me in my spare time :P
 
-<video src="readme-assets/video.mov" controls preload></video>
+Here's a quick [demo video](readme-assets/video.mov) to show you what it looks like!
  
 ## Features
 - [x] solid blocks
