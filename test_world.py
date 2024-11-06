@@ -27,7 +27,7 @@ def display_world(stdscr, world, cursor_x, cursor_y, total_liquid):
 
 def main(stdscr):
     curses.curs_set(0)
-    width, height = 25, 45
+    width, height = 40, 40
     world = create_world(width, height)
     cursor_x, cursor_y = 0, 0
     total_liquid = 0.0
