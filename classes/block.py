@@ -35,6 +35,15 @@ class Block(BaseObject):
         return self.appearance
 
 
+def get_all_liquid_in_blocks(blocks, world):
+    """return the total liquid in the blocks"""
+    total_liquid = 0
+    for block in blocks:
+        if world.world_array[block[1]][block[0]] is not None:
+            total_liquid += world.world_array[block[1]][block[0]].liquid_level
+    return total_liquid
+
+
 class Liquid(Block):
     """class for a liquid block"""
 
@@ -89,7 +98,7 @@ class Liquid(Block):
 
             if len(blocks_to_move_to) > 0:
                 # get the total liquid of the blocks next to me
-                total_liquid = self.get_all_liquid_in_blocks(blocks_to_move_to, world) + self.liquid_level
+                total_liquid = get_all_liquid_in_blocks(blocks_to_move_to, world) + self.liquid_level
                 # get the average liquid level
                 average_liquid = total_liquid / (len(blocks_to_move_to) + (1 if self.liquid_level > self.threshold else 0))
                 # check if any of the blocks next to me are None
@@ -147,14 +156,6 @@ class Liquid(Block):
         if self.can_flow_into(self.x - 1, self.y, world):
             blocks.append((self.x - 1, self.y))
         return blocks
-
-    def get_all_liquid_in_blocks(self, blocks, world):
-        """return the total liquid in the blocks"""
-        total_liquid = 0
-        for block in blocks:
-            if world.world_array[block[1]][block[0]] is not None:
-                total_liquid += world.world_array[block[1]][block[0]].liquid_level
-        return total_liquid
 
     def __str__(self):
         return f"""
