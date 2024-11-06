@@ -73,7 +73,7 @@ class Liquid(Block):
             if world.world_array[self.y + 1][self.x] is None:
                 # if the block below is empty, move down
                 world.world_array[self.y + 1][self.x] = self.__class__(self.x, self.y + 1, self.appearance, self.viscosity,
-                                                                       self.liquid_level, skip_tick=True)
+                                                                       self.liquid_level, self.surface_tension, skip_tick=True)
                 world.world_array[self.y][self.x] = None
                 self.liquid_level = 0
             else:
@@ -123,7 +123,7 @@ class Liquid(Block):
                     if world.world_array[block[1]][block[0]] is not None:
                         world.world_array[block[1]][block[0]].liquid_level = average_liquid
                     else:
-                        world.world_array[block[1]][block[0]] = self.__class__(block[0], block[1], self.appearance, self.viscosity, average_liquid, skip_tick=True)
+                        world.world_array[block[1]][block[0]] = self.__class__(block[0], block[1], self.appearance, self.viscosity, average_liquid, self.surface_tension, skip_tick=True)
 
         # if the liquid level is 0, remove the block
         if self.liquid_level <= 0:
