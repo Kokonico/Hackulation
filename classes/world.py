@@ -1,4 +1,5 @@
 """the entire world of the game"""
+from blocks import ErrorBlock
 from classes.block import Block
 from classes.entities import Entity
 
@@ -20,7 +21,10 @@ class World:
             for block in row:
                 if isinstance(block, Block):
                     if not block.skip_tick:
-                        self.world_array = block.tick(self).world_array
+                        try:
+                            self.world_array = block.tick(self).world_array
+                        except Exception as e:
+                            self.world_array[block.y][block.x] = ErrorBlock(block.x, block.y, e)
                     else:
                         block.skip_tick = False
                         self.world_array[block.y][block.x] = block

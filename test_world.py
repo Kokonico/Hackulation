@@ -52,7 +52,7 @@ def main(stdscr):
         elif key == ord('q'):
             break
         elif key == ord('l'):
-            world.world_array[cursor_y][cursor_x] = Liquid(cursor_x, cursor_y, "~", 100, 100, 0.0)
+            world.world_array[cursor_y][cursor_x] = Liquid(cursor_x, cursor_y, "~", 100, 100, 1)
         elif key == ord('b'):
             world.world_array[cursor_y][cursor_x] = Block(cursor_x, cursor_y, "#")
         elif key == ord('d'):
