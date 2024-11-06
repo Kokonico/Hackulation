@@ -160,5 +160,6 @@ class Liquid(Block):
         return f"""
         Liquid: {self.appearance}
         viscosity: {self.viscosity}
+        surface tension: {self.surface_tension}
         liquid level: {self.liquid_level}
         """
