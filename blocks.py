@@ -1,5 +1,6 @@
 from classes.block import Block, Liquid
 
+import traceback
 
 class Dirt(Block):
     """class for a dirt block"""
@@ -59,6 +60,7 @@ class ErrorBlock(Block):
     def __init__(self, x: int, y: int, error: Exception | BaseException):
         super().__init__(x, y, "�")
         self.error = error
+        self.traceback = traceback.format_exc()
 
     def tick(self, world):
         """called every game tick"""
@@ -68,4 +70,5 @@ class ErrorBlock(Block):
         return f"""
         Something bad happened here...
         Error: {self.error}
+        Stack trace: {self.traceback}
         """
