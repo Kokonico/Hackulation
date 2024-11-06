@@ -27,7 +27,7 @@ def display_world(stdscr, world, cursor_x, cursor_y, total_liquid):
 
 def main(stdscr):
     curses.curs_set(0)
-    width, height = 50, 50
+    width, height = 25, 45
     world = create_world(width, height)
     cursor_x, cursor_y = 0, 0
     total_liquid = 0.0
@@ -52,7 +52,7 @@ def main(stdscr):
         elif key == ord('q'):
             break
         elif key == ord('l'):
-            world.world_array[cursor_y][cursor_x] = Liquid(cursor_x, cursor_y, "~", 100)
+            world.world_array[cursor_y][cursor_x] = Liquid(cursor_x, cursor_y, "~", 100, 100, 1)
         elif key == ord('b'):
             world.world_array[cursor_y][cursor_x] = Block(cursor_x, cursor_y, "#")
         elif key == ord('d'):
