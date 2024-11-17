@@ -111,7 +111,10 @@ class Liquid(Block):
                     # we can't flow into the None blocks
                     blocks_to_move_to = [block for block in blocks_to_move_to if world.world_array[block[1]][block[0]] is not None]
                     # recalculate the average liquid (total liquid is the same)
-                    average_liquid = total_liquid / (len(blocks_to_move_to) + (1 if self.liquid_level > self.threshold else 0))
+                    if len(blocks_to_move_to) > 0:
+                        average_liquid = total_liquid / (len(blocks_to_move_to) + (1 if self.liquid_level > self.threshold else 0))
+                    else:
+                        average_liquid = self.liquid_level  # or handle this case appropriately
 
                 # move the liquid
                 if self.liquid_level > self.threshold:
