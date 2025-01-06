@@ -1,4 +1,4 @@
-from classes.block import Block, Liquid
+from classes.block import Block, Liquid, Gas
 
 import traceback
 

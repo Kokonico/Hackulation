@@ -167,3 +167,68 @@ class Liquid(Block):
         surface tension: {self.surface_tension}
         liquid level: {self.liquid_level}
         """
+
+
+class Gas(Block):
+    """class for a gas block"""
+
+    def __init__(self, x: int, y: int, appearance: str, density: int, gas_flow_threshold: float = 0.1, skip_tick: bool = False):
+        super().__init__(x, y, appearance, solid=False, skip_tick=skip_tick)
+        self.density = density
+        self.flow_threshold = gas_flow_threshold
+
+    def tick(self, world):
+        """called every game tick"""
+        # GAS MOVEMENT 1. get all sides I can flow into 2. equalize the gas levels of the blocks to the sides (that
+        # means that the gas level of all blocks will be the same)
+
+        blocks_to_move_to = self.get_valid_neighbors(world)
+        # equalize the gas levels
+        total_gas = self.density
+        for block in blocks_to_move_to:
+            if world.world_array[block[1]][block[0]] is not None:
+                total_gas += world.world_array[block[1]][block[0]].density
+        average_gas = total_gas / (len(blocks_to_move_to) + 1)
+        # if the average gas level is less than the threshold, don't move the gas
+        if average_gas > self.flow_threshold:
+            self.density = average_gas
+            for block in blocks_to_move_to:
+                if world.world_array[block[1]][block[0]] is not None:
+                    world.world_array[block[1]][block[0]].density = average_gas
+                else:
+                    world.world_array[block[1]][block[0]] = self.__class__(block[0],
+                                                                              block[1], self.appearance, average_gas, skip_tick=True)
+        else:
+            # move myself to a random neighboring empty block
+            empty_blocks = [block for block in blocks_to_move_to if world.world_array[block[1]][block[0]] is None]
+            if len(empty_blocks) > 0:
+                block = random.choice(empty_blocks)
+                world.world_array[block[1]][block[0]] = self.__class__(block[0], block[1], self.appearance, self.density, skip_tick=True)
+                world.world_array[self.y][self.x] = None
+
+        if self.density <= 0:
+            world.world_array[self.y][self.x] = None
+
+        return world  # return the modified world after the tick
+
+    def get_valid_neighbors(self, world):
+        """returns a list of all valid neighbors"""
+        neighbors = []
+        for i in [-1, 1]:
+            if is_valid_block(self.x + i, self.y, world):
+                block = world.world_array[self.y][self.x + i]
+                if block is None or isinstance(block, self.__class__):
+                    neighbors.append((self.x + i, self.y))
+            if is_valid_block(self.x, self.y + i, world):
+                block = world.world_array[self.y + i][self.x]
+                if block is None or isinstance(block, self.__class__):
+                    neighbors.append((self.x, self.y + i))
+        return neighbors
+
+    def __str__(self):
+        return f"""
+        Gas: {self.appearance}
+        density: {self.density}
+        """
+
+

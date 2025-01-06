@@ -11,7 +11,7 @@ Here's a quick [demo video](https://www.youtube.com/watch?v=-JgpztmEs1c) to show
 ## Features
 - [x] solid blocks
 - [x] liquid physics (WIP)
-- [ ] gas physics
+- [x] gas physics (WIP)
 - [ ] fire physics
 - [ ] entities and living things
 
@@ -24,6 +24,7 @@ You can still run an experimental world by running the `test_world.py` file.
 - `b` to place a block
 - `d` to delete a block
 - `l` to spawn 100 ml of liquid
+- `g` to spawn a fully dense block of gas
 - `space` to tick the simulation, hold it down to tick multiple times
 
 ## How to contribute
