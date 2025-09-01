@@ -3,8 +3,6 @@ from blocks import ErrorBlock
 from classes.block import Block
 from classes.entities import Entity
 
-from noise import pnoise2
-
 sea_level = 30  # sea level (in percentage)
 
 
